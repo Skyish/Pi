@@ -1,0 +1,32 @@
+<% include ./../_layouts/top %>
+
+<div class="cover-container">
+    <div class="inner cover cover-margin">
+
+        <form class="form-signin login-form" method="POST">
+            <h2 class="form-signin-heading">Please sign in</h2>
+            <br>
+            <label for="inputEmail" class="sr-only control-label">Email address</label>
+            <input name="username" type="text" id="inputEmail" class="form-control" placeholder="Username" required
+                   autofocus>
+            <br>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password"
+                   required>
+
+            <div class="row">
+            <div class="checkbox col col-md-6">
+                <a href="/register">Creat an account</a>
+            </div>
+            <div class="col col-md-6" style="padding-top: 0.7em;">
+                <a href="/register/retrievePassword">Forgot my password.</a>
+            </div>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+
+
+    </div>
+    <!-- /container -->
+
+    <% include ./../_layouts/bottom %>

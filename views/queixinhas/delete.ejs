@@ -1,0 +1,23 @@
+<% include ./../_layouts/top %>
+
+<div class="cover-container">
+    <div class="inner-cover cover-margin">
+        <form id="edit_queixinha_form" class="form-signin" action="/queixinhas/close/comment" method="POST">
+
+            <h2>Last comment:</h2>
+            <textarea id="last_comment" rows="5" cols="97" form="edit_queixinha_form" name="last_comment" placeholder="Comment" required
+                      style="color: rgb(85,85,85);resize: none;"></textarea>
+
+
+
+            <footer class="pull-right">
+                <button class="btn btn-sm btn-primary btn-block" name="id" onclick="$(this).val('<%=queixinha.id%>');"
+                        type="submit" style="margin-top: 0.3em;">Close Queixinha
+                </button>
+            </footer>
+
+        </form>
+    </div>
+
+
+    <% include ./../_layouts/bottom %>

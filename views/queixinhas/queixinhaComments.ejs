@@ -1,0 +1,122 @@
+<% include ./../_layouts/top %>
+
+<div class="row comments-well cover-margin">
+
+    <div class="col-md-2">
+        <form action="/queixinhas/follow" method="post">
+            <button name="id" class="btn btn-xs btn-primary" onclick="$(this).val('<%=elem.id%>');"
+                    type="submit" <%=elem.closed?'disabled':''%>>Follow
+            </button>
+        </form>
+
+        <span class="btn-group-vertical" role="group">
+            <form action="/queixinhas/like" method="POST">
+
+                <input type="checkbox" id="likeCheckBox_<%=elem.id%>" name="like" style="display:none;">
+                                <span class="checkbox input thumbs-span"
+                                    <%if(!elem.closed){%>
+                                      onclick="$('#likeCheckBox_<%=elem.id%>').click().val('<%=elem.id%>');this.parentNode.submit()"
+                                    <%}%>
+                                        <%= (elem.likeId && elem.like) ? "style= color:green" :'' %>>
+                                <i class="checkbox glyphicon glyphicon-thumbs-up like-btn" <%=elem.closed?'disabled':''%>></i>
+                                </span>
+
+                <input type="checkbox" id="dislikeCheckBox_<%=elem.id%>" name="dislike"
+                       style="display:none;">
+                                <span class="checkbox input thumbs-span"
+                                        <%if(!elem.closed){%>
+                                      onclick="$('#dislikeCheckBox_<%=elem.id%>').click().val('<%=elem.id%>');this.parentNode.submit()"
+                                        <%}%>
+                                        <%= (elem.likeId && elem.like == false) ? "style= color:red" :'' %>>
+                                <i class="checkbox glyphicon glyphicon-thumbs-down like-btn" <%=elem.closed?'disabled':''%>></i></span>
+            </form>
+        </span>
+    </div>
+
+    <div class="col col-md-8">
+
+
+        <h3><%=elem.tittle%></h3>
+    </div>
+
+    <div class="col col-md-2 btn-group-xs">
+
+        <form action="/queixinhas/edit" method="post" style="display: inline">
+            <button name="id" class="btn btn-xs btn-primary" onclick="$(this).val('<%=elem.id%>');"<%=elem.closed?'disabled':''%>
+            <%=elem.author == user.id?"":"disabled"%>
+            type="submit">Edit
+            </button>
+        </form>
+
+
+        <a href="/queixinhas/close/comment/<%=elem.id%>" class="btn btn-xs btn-primary" <%=elem.closed?'disabled':''%> type="submit" <%=elem.author ==
+        user.id || user.role=='admin'?"":"disabled"%>>Close
+        </a>
+
+
+    </div>
+
+</div>
+<div class="row comments-well">
+    <div class="col col-md-2">
+        <%= elem.username %>
+
+    </div>
+
+    <div class="col col-md-8">
+        <p><%=elem.description%></p>
+    </div>
+    <div class="col col-md-2">
+        <%=elem.creationDate%>
+    </div>
+</div>
+
+<% comments.forEach(function(comment){ %>
+<div class="row comments-well">
+    <div class="col-md-2">
+        <%=comment.username%>
+    </div>
+    <div class="col-md-8">
+        <%=comment.comment%>
+    </div>
+    <div class="col col-md-2">
+        <%=comment.creation_date%>
+    </div>
+</div>
+
+<% }) %>
+
+<div class="row comments-well">
+    <div class="col col-md-offset-10 col-md-2 btn-group-sm">
+
+        <button class="btn btn-sm btn-primary"
+        <%= parseInt(page)-1 < 0?'disabled':'' %> onclick="window.location.href = window.location.origin +
+        '/queixinhas/<%=elem.id%>/<%= parseInt(page)-1 %>'">
+        Previous
+        </button>
+
+        <button class="btn btn-sm btn-primary"
+        <%= (parseInt(page)+1) * 10 > totalComments?'disabled':'' %> onclick="window.location.href =
+        window.location.origin + '/queixinhas/<%=elem.id%>/<%= parseInt(page)+1 %>'">
+        Next
+        </button>
+    </div>
+</div>
+
+<div class="cover-container">
+
+<%if(!elem.closed){%>
+    <form id="comment_form" action="/queixinhas/comment" method="post">
+
+        <label for="comment">Comment:</label>
+            <textarea id="comment" rows="5" cols="97" form="comment_form" name="comment" required
+                      style="color: rgb(85,85,85);resize: none"></textarea>
+
+        <footer class="pull-right">
+            <button class="btn btn-sm btn-primary btn-block" name="id" onclick="$(this).val('<%=elem.id%>');"
+                    type="submit" style="margin-top: 0.3em;">Send Comment
+            </button>
+        </footer>
+    </form>
+<%}%>
+    <% include ./../_layouts/bottom %>

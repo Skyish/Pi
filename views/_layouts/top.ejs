@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>QueixinhasNaNet</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="http://getbootstrap.com/examples/cover/cover.css" rel="stylesheet">
+    <link href="/stylesheets/queixinhas.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="site-wrapper">
+
+    <div class="site-wrapper-inner">
+
+        <div class="navbar-collapse collapse">
+
+            <div class="navbar-fixed-top navbar-inverse">
+                <div class="inner">
+                    <h3 class="masthead-brand">Queixinhas na Net</h3>
+                    <nav>
+                        <ul class="nav masthead-nav">
+                            <% if(typeof(heading) !== 'undefined' && heading == "home"){ %>
+                            <li class="active"><a href="/">Home</a></li>
+                            <% }else{ %>
+                            <li><a href="/">Home</a></li>
+                            <% } %>
+
+                            <% if(typeof(heading) !== 'undefined' && heading == "queixinhas" && (typeof(elem) == 'undefined' || !elem.closed)){ %>
+                            <li class="active"><a href="/queixinhas/0">Queixinhas</a></li>
+                            <% }else{ %>
+                            <li><a href="/queixinhas/0">Queixinhas</a>
+                            <% } %>
+
+                                <% if(typeof(authenticated) !== 'undefined' && authenticated){ %>
+                                <% if(typeof(heading) !== 'undefined' && (heading == "followed")){ %>
+                            <li class="active"><a href="/queixinhas/followed/0">Followed Queixinhas</a></li>
+                            <% } else { %>
+                            <li><a href="/queixinhas/followed/0">Followed Queixinhas</a></li>
+                            <%}%>
+                            <%}%>
+
+                            <% if(typeof(authenticated) !== 'undefined' && authenticated){ %>
+                                <% if(typeof(heading) !== 'undefined' && (heading == "closed" || (heading = "queixinhas" && typeof(elem) != 'undefined' && elem.closed))){ %>
+                                    <li class="active"><a href="/queixinhas/closed/0">Closed Queixinhas</a></li>
+                                <% } else { %>
+                                    <li><a href="/queixinhas/closed/0">Closed Queixinhas</a></li>
+                                <%}%>
+                            <%}%>
+
+                            <% if(typeof(heading) !== 'undefined' && heading == "login"){ %>
+                            <li class="active"><a href="/login">Login</a></li>
+                            <% }else{ %>
+                            <% if(typeof(authenticated) != 'undefined' && authenticated){ %>
+                            <li id="_logoutId"><a href="/logout">Logout</a></li>
+                            <% }else{ %>
+                            <li><a href="/login">Login</a></li>
+                            <% } %>
+                            <% } %>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+        </div>
+

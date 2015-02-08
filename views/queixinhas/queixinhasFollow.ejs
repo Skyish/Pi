@@ -1,0 +1,66 @@
+<% include ./../_layouts/top %>
+
+<div class="row comments-well cover-margin">
+    <% if(typeof(authenticated) != 'undefined' && authenticated){ %>
+
+    <div class="col col-md-offset-10 col-md-2">
+        <div class="col col-md-3"
+        <%if(closed){%> style="display:none;" <%}%>>
+        <a class="btn btn-sm btn-primary" href="/queixinhas/create/new">Create new Queixinha</a>
+    </div>
+</div>
+<% } %>
+
+</div>
+
+
+<% queixinhas.forEach(function(elem){ %>
+<div class="row comments-well cover-margin">
+    <div class="col col-md-2">
+        <%if(!elem.seenUpdate){%>
+            <img src="/images/new.gif">
+        <br>
+                on <%= elem.creationDate %>
+        <%}else{%>
+            last updated on
+        <br>
+            <%= elem.creationDate %>
+        <%}%>
+    </div>
+
+    <div class="col col-md-8">
+
+
+        <a href="/queixinhas/<%=elem.id%>/<%=0%>">
+            <p style="font-size: 200%;"> <%=elem.tittle%></p>
+
+            <p><%=elem.description%></p>
+        </a>
+
+    </div>
+
+    <div class="col col-md-2">
+        <p>by <%= elem.username %></p>
+    </div>
+</div>
+<% }) %>
+<div class="row comments-well">
+    <div class="col col-md-offset-10 col-md-2 btn-group-sm">
+
+        <button class="btn btn-sm btn-primary"
+        <%= parseInt(page)-1 < 0?'disabled':'' %> onclick="window.location.href = window.location.origin +
+        '/queixinhas/<%= parseInt(page)-1 %>'">
+        Previous
+        </button>
+
+        <button class="btn btn-sm btn-primary"
+        <%= (parseInt(page)+1) * 10 > total?'disabled':'' %> onclick="window.location.href =
+        window.location.origin + '/queixinhas/<%= parseInt(page)+1 %>'">
+        Next
+        </button>
+    </div>
+</div>
+
+<div class="cover-container">
+
+    <% include ./../_layouts/bottom %>

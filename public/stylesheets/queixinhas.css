@@ -1,0 +1,75 @@
+.thumbs-span {
+    display: inline;
+}
+
+.comments-well {
+    text-align: justify;
+    padding-top: 2em;
+    padding-left: 4em;
+    padding-right: 4em;
+}
+
+.queixinhasList * {
+    text-align: left;
+
+    text-overflow: ellipsis;
+}
+
+.login-form {
+    margin-left: 12em;
+    margin-right: 12em;
+}
+
+.cover-margin {
+    margin-top: 5.4em;
+}
+
+.like-btn {
+    display: inline-block;
+    padding: inherit;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+}
+
+.like-btn:focus,
+.like-btn:active:focus,
+.like-btn.active:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+
+.like-btn:hover,
+.like-btn:focus {
+    color: #C8C8C8;
+    text-decoration: none;
+}
+
+.like-btn:active,
+.like-btn.active {
+    background-image: none;
+    outline: 0;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+
+.like-btn.disabled,
+.like-btn[disabled],
+fieldset[disabled] .like-btn {
+    pointer-events: none;
+    cursor: not-allowed;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    opacity: .65;
+}

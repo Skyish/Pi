@@ -1,0 +1,77 @@
+<% include ./../_layouts/top %>
+
+<div class="row comments-well cover-margin">
+    <% if(typeof(authenticated) != 'undefined' && authenticated){ %>
+
+    <div class="col col-md-offset-10 col-md-2">
+        <div class="col col-md-3" <%if(closed){%> style="display:none;" <%}%>>
+            <a class="btn btn-sm btn-primary" href="/queixinhas/create/new">Create new Queixinha</a>
+        </div>
+    </div>
+    <% } %>
+
+</div>
+
+
+    <% queixinhas.forEach(function(elem){ %>
+<div class="row comments-well cover-margin">
+    <div class="col col-md-2">
+
+        <form action="/queixinhas/follow" method="post">
+            <button name="id" class="btn btn-xs btn-primary" onclick="$(this).val('<%=elem.id%>');" <%= closed ? 'disabled':''%>
+                    type="submit">Follow
+            </button>
+        </form>
+        <span class="btn-group-vertical" role="group">
+        <form action="/queixinhas/like" method="POST">
+
+
+        <input type="checkbox" id="likeCheckBox_<%=elem.id%>" name="like" style="display:none;">
+            <span class="checkbox input thumbs-span"
+                  onclick="if('<%=closed%>' != 'true'){$('#likeCheckBox_<%=elem.id%>').click().val('<%=elem.id%>');this.parentNode.submit()}" <%= (elem.likeId && elem.like) ? "style= color:green" :'' %>>
+            <i class="checkbox glyphicon glyphicon-thumbs-up like-btn" <%= closed ? 'disabled':''%>></i></span>
+
+        <input type="checkbox" id="dislikeCheckBox_<%=elem.id%>" name="dislike" style="display:none;">
+            <span class="checkbox input thumbs-span"
+                  onclick="if('<%=closed%>' != 'true'){$('#dislikeCheckBox_<%=elem.id%>').click().val('<%=elem.id%>');this.parentNode.submit()}" <%= (elem.likeId && elem.like == false) ? "style= color:red" :'' %>>
+            <i class="checkbox glyphicon glyphicon-thumbs-down like-btn" <%= closed ? 'disabled':''%>></i></span>
+
+        </form>
+        </span>
+    </div>
+
+    <div class="col col-md-8">
+
+        <a href="/queixinhas/<%=elem.id%>/<%=0%>">
+            <p style="font-size: 200%;"><%=elem.tittle%></p>
+
+            <p><%=elem.description%></p>
+        </a>
+
+    </div>
+
+    <div class="col col-md-2">
+        <p>by <%= elem.username %></p>
+    </div>
+</div>
+    <% }) %>
+<div class="row comments-well">
+    <div class="col col-md-offset-10 col-md-2 btn-group-sm">
+
+        <button class="btn btn-sm btn-primary"
+        <%= parseInt(page)-1 < 0?'disabled':'' %> onclick="window.location.href = window.location.origin +
+        '/queixinhas/<%= parseInt(page)-1 %>'">
+        Previous
+        </button>
+
+        <button class="btn btn-sm btn-primary"
+        <%= (parseInt(page)+1) * 10 >= total?'disabled':'' %> onclick="window.location.href =
+        window.location.origin + '/queixinhas/<%= parseInt(page)+1 %>'">
+        Next
+        </button>
+    </div>
+</div>
+
+<div class="cover-container">
+
+    <% include ./../_layouts/bottom %>

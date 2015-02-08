@@ -1,0 +1,12 @@
+<%include _layouts/top %>
+<div class="cover-container">
+    <div class="inner cover cover-margin">
+
+        <h1><%= error.status %></h1>
+
+        <h1><%= error.message %></h1>
+        <pre><%= error.stack %></pre>
+
+    </div>
+
+    <%include _layouts/bottom %>
