@@ -40,7 +40,6 @@
  * State (Estados de todos os works de um portfolio)
  * WorkItem
    * State (Estado de um work)
-
 ![](http://i.imgur.com/vmQy0bp.png)
 * CreateWork
  * Handle (Contém os dados de input para a criação de um work)
