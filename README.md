@@ -59,7 +59,6 @@
  * State (Estados de todos os badges de um portfolio)
  * BadgeDetail
    * State (Estado de um badge)
-
 * BadgesSummary
  * State (Estados de todos os badges de um portfolio)
  * BadgeSummary
